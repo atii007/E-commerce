@@ -1,0 +1,108 @@
+.cartitems {
+  margin: 65px 150px;
+}
+
+.cartitems hr {
+  height: 3px;
+  background: #e2e2e2;
+  border: 0;
+}
+
+.cartitemFormatMain {
+  display: grid;
+  grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+  gap: 75px;
+  padding: 20px 0px;
+  color: #454545;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.cartitemFormat {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.carticonProductIcon {
+  height: 85px;
+}
+
+.cartitemRemoveIcon {
+  width: 15px;
+  margin: 0px 40px;
+  cursor: pointer;
+}
+
+.cartitemQuantity {
+  width: 64px;
+  height: 50px;
+  border: 2px solid #d5d5d5;
+  background: #fff;
+}
+
+.cartitemDown {
+  display: flex;
+  margin: 100px 0px;
+}
+
+.cartitemTotal {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-right: 40px;
+  gap: 40px;
+}
+
+.cartitemTotalitem {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0px;
+}
+
+.cartitemTotal button {
+  width: 260px;
+  height: 55px;
+  outline: none;
+  border: none;
+  background: #ff5a5a;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cartitemPromo {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.cartitemPromo p {
+  color: #555;
+}
+
+.cartitemPromobox {
+  width: 500px;
+  margin-top: 15px;
+  padding-left: 20px;
+  height: 58px;
+  background: #eaeaea;
+}
+
+.cartitemPromobox input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 330px;
+  height: 49px;
+}
+
+.cartitemPromobox button {
+  width: 150px;
+  height: 57px;
+  font-size: 16px;
+  background: black;
+  color: white;
+  cursor: pointer;
+}

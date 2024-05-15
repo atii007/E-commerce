@@ -1,0 +1,163 @@
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 16px;
+  box-shadow: 0 1px 3px -2px black;
+}
+
+.navLogo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.navLogo p {
+  color: #171717;
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.navMenu {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  gap: 50px;
+  color: #626262;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.navMenu li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 3px;
+}
+
+.navMenu hr {
+  border: none;
+  width: 80%;
+  height: 3px;
+  border-radius: 10px;
+  background-color: #ff4141;
+}
+
+.navLoginCart {
+  display: flex;
+  align-items: center;
+  gap: 45px;
+}
+
+.navCartCount {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -35px;
+  margin-left: 35px;
+  border-radius: 11px;
+  font-size: 14px;
+  background: #E72929;
+  color: white;
+}
+
+.navDropdown {
+  display: none;
+}
+
+@media (max-width: 1280px) {
+  .navbar {
+    padding: 8px 30px;
+  }
+  .navLogo img {
+    width: 50px;
+  }
+  .navLogo p {
+    font-size: 25px;
+  }
+  .navMenu {
+    gap: 30px;
+    font-size: 16px;
+  }
+  .navLoginCart {
+    gap: 30px;
+  }
+  .navLoginCart button {
+    width: 100px;
+    height: 50px;
+    font-size: 16px;
+  }
+  .navCartCount {
+    margin-left: 35px;
+    font-size: 12px;
+  }
+}
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 6px 20px;
+  }
+  .navMenu {
+    gap: 25px;
+    font-size: 14px;
+  }
+  .navLoginCart button {
+    width: 80px;
+    height: 35px;
+    font-size: 14px;
+  }
+  .navLoginCart img {
+    width: 35px;
+  }
+  .navCartCount {
+    width: 18px;
+    height: 18px;
+  }
+}
+@media (max-width: 800px) {
+  .navbar {
+    padding: 4px 10px;
+  }
+  .navDropdown {
+    display: block;
+    width: 30px;
+    transition: 0.5s;
+    rotate: -90deg;
+  }
+  .navMenu {
+    display: flex;
+    height: 60px;
+    width: 100%;
+    position: absolute;
+    background-color: white;
+    justify-content: center;
+    top: 50px;
+    display: none;
+  }
+  .navMenuVisible {
+    display: flex;
+  }
+  .navMenuDropdownDirection {
+    rotate: 0deg;
+  }
+}
+@media (max-width: 500px) {
+  .navbar {
+    padding: 8px 0px;
+    gap: 0;
+  }
+  .navLogo {
+    transform: scale(0.8);
+  }
+  .navMenu {
+    height: 45px;
+    top: 60px;
+  }
+  .navLoginCart {
+    transform: scale(0.8);
+  }
+}

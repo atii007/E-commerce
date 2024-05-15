@@ -1,0 +1,36 @@
+[debug] [2024-03-11T11:25:39.479Z] ----------------------------------------------------------------------
+[debug] [2024-03-11T11:25:39.483Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\HP\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js database:set /user/razzaq6atif@gmail.com/userInfo \
+[debug] [2024-03-11T11:25:39.483Z] CLI Version:   13.0.2
+[debug] [2024-03-11T11:25:39.484Z] Platform:      win32
+[debug] [2024-03-11T11:25:39.484Z] Node Version:  v21.5.0
+[debug] [2024-03-11T11:25:39.484Z] Time:          Mon Mar 11 2024 16:25:39 GMT+0500 (Pakistan Standard Time)
+[debug] [2024-03-11T11:25:39.485Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-03-11T11:25:39.489Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2024-03-11T11:25:39.656Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-03-11T11:25:39.657Z] > authorizing via signed-in user (razzaq6atif@gmail.com)
+[debug] [2024-03-11T11:25:39.657Z] [iam] checking project shopper-afb67 for permissions ["firebase.projects.get","firebasedatabase.instances.update"]
+[debug] [2024-03-11T11:25:39.658Z] > refreshing access token with scopes: []
+[debug] [2024-03-11T11:25:39.660Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-03-11T11:25:39.661Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-03-11T11:25:40.140Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2024-03-11T11:25:40.140Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-03-11T11:25:40.172Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/shopper-afb67:testIamPermissions [none]
+[debug] [2024-03-11T11:25:40.172Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/shopper-afb67:testIamPermissions x-goog-quota-user=projects/shopper-afb67
+[debug] [2024-03-11T11:25:40.173Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/shopper-afb67:testIamPermissions {"permissions":["firebase.projects.get","firebasedatabase.instances.update"]}
+[debug] [2024-03-11T11:25:40.260Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2024-03-11T11:25:40.261Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2024-03-11T11:25:41.654Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/shopper-afb67:testIamPermissions 200
+[debug] [2024-03-11T11:25:41.655Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/shopper-afb67:testIamPermissions {"permissions":["firebase.projects.get","firebasedatabase.instances.update"]}
+[debug] [2024-03-11T11:25:41.656Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/shopper-afb67 [none]
+[debug] [2024-03-11T11:25:42.243Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/shopper-afb67 200
+[debug] [2024-03-11T11:25:42.244Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/shopper-afb67 {"projectId":"shopper-afb67","projectNumber":"379200498701","displayName":"Shopper","name":"projects/shopper-afb67","resources":{"hostingSite":"shopper-afb67","realtimeDatabaseInstance":"shopper-afb67-default-rtdb"},"state":"ACTIVE","etag":"1_cfd63596-4b6a-4881-a3c1-1f2fadbc1096"}
+[debug] [2024-03-11T11:25:42.246Z] >>> [apiv2][query] GET https://firebasedatabase.googleapis.com/v1beta/projects/shopper-afb67/locations/-/instances/shopper-afb67-default-rtdb [none]
+[debug] [2024-03-11T11:25:44.067Z] <<< [apiv2][status] GET https://firebasedatabase.googleapis.com/v1beta/projects/shopper-afb67/locations/-/instances/shopper-afb67-default-rtdb 200
+[debug] [2024-03-11T11:25:44.068Z] <<< [apiv2][body] GET https://firebasedatabase.googleapis.com/v1beta/projects/shopper-afb67/locations/-/instances/shopper-afb67-default-rtdb {"name":"projects/379200498701/locations/asia-southeast1/instances/shopper-afb67-default-rtdb","project":"projects/379200498701","databaseUrl":"https://shopper-afb67-default-rtdb.asia-southeast1.firebasedatabase.app","type":"DEFAULT_DATABASE","state":"ACTIVE"}
+[debug] [2024-03-11T11:25:58.362Z] >>> [apiv2][query] PUT https://shopper-afb67-default-rtdb.asia-southeast1.firebasedatabase.app/user/razzaq6atif@gmail.com/userInfo.json 
+[debug] [2024-03-11T11:25:58.363Z] >>> [apiv2][body] PUT https://shopper-afb67-default-rtdb.asia-southeast1.firebasedatabase.app/user/razzaq6atif@gmail.com/userInfo.json [stream]
+[debug] [2024-03-11T11:26:59.160Z] *** [apiv2] error from fetch(https://shopper-afb67-default-rtdb.asia-southeast1.firebasedatabase.app/user/razzaq6atif@gmail.com/userInfo.json, {"headers":{},"method":"PUT","body":{"fd":null,"path":"\\","flags":"r","mode":438,"end":null,"bytesRead":0,"_events":{},"_readableState":{"highWaterMark":65536,"buffer":[],"bufferIndex":0,"length":0,"pipes":[],"awaitDrainWriters":null},"_eventsCount":1}}): FetchError: request to https://shopper-afb67-default-rtdb.asia-southeast1.firebasedatabase.app/user/razzaq6atif@gmail.com/userInfo.json failed, reason: socket hang up
+[debug] Failed to make request to https://shopper-afb67-default-rtdb.asia-southeast1.firebasedatabase.app/user/razzaq6atif@gmail.com/userInfo.json
+[error] 
+[error] Error: Unexpected error while setting data: FirebaseError: Failed to make request to https://shopper-afb67-default-rtdb.asia-southeast1.firebasedatabase.app/user/razzaq6atif@gmail.com/userInfo.json
