@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 mongoose.connect(
-  "mongodb+srv://razzaq6atif:rQttquLqHwokrAcF@cluster0.bsuuyid.mongodb.net/e-commerce"
+  "mongodb+srv://razzaq6atif:84rXlGIzQkfoRTcS@cluster0.bsuuyid.mongodb.net/e-commerce"
 );
 
 app.get("/", (req, res) => {
