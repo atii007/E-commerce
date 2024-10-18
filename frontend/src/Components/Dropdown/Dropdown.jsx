@@ -12,7 +12,6 @@ export default function Dropdown({
   setProfile,
   setUser,
 }) {
-  console.log("googleLogout", googleLogout());
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -27,9 +26,6 @@ export default function Dropdown({
     setProfile(null);
     setUser(null);
   };
-  //   React.useEffect(() => {}, [user]);
-
-  console.log("user ", user);
   React.useEffect(() => {}, [user]);
 
   return (

@@ -18,7 +18,7 @@ const Popular = () => {
   return (
     <section className="product_section layout_padding">
       <Box className="container">
-        <Box class="heading_container heading_center">
+        <Box className="heading_container heading_center">
           <h2>
             Women's <span>Choice</span>
           </h2>

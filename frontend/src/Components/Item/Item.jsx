@@ -1,9 +1,32 @@
 import { Box, Button } from "@mui/material";
-import React, { useContext } from "react";
-import { ShopContext } from "../../Context/Context";
+import { useAuth } from "../../context/authProvider";
+import { connect } from "react-redux";
+import { getCartItems } from "../../states-management/actions/actions";
 
-const Item = (props) => {
-  const { addToCart } = useContext(ShopContext);
+export const Item = (props) => {
+  const { cookies } = useAuth();
+
+  const addToCart = (itemId) => {
+    const newItem = {
+      ...props.cartItem,
+      [itemId]: (props.cartItem[itemId] || 0) + 1,
+    };
+
+    props.getCartItems(newItem);
+    if (cookies.token) {
+      fetch("http://localhost:4000/addtocart", {
+        method: "POST",
+        headers: {
+          Accept: "application/form-data",
+          "auth-token": `${cookies.token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ itemId: itemId }),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data));
+    }
+  };
 
   return (
     <Box className="col-sm-6 col-md-4 col-lg-4">
@@ -33,4 +56,10 @@ const Item = (props) => {
   );
 };
 
-export default Item;
+function shopItemProps(state) {
+  return {
+    cartItem: state.cartItem,
+  };
+}
+
+export default connect(shopItemProps, { getCartItems })(Item);

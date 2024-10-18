@@ -15,7 +15,7 @@ const NewCollections = () => {
   return (
     <section className="product_section layout_padding">
       <Box className="container">
-        <Box class="heading_container heading_center">
+        <Box className="heading_container heading_center">
           <h2>
             New <span>Collection</span>
           </h2>

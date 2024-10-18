@@ -1,101 +1,37 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Box, Modal } from "@mui/material";
 import styles from "../Pages/CSS/LoginSignup.module.css";
 import CustomButton from "../Components/sharedComponent/CustomButton";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { ShopContext } from "../Context/Context";
+import { useAuth } from "../context/authProvider";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  openLoginModal,
+  setFormData,
+} from "../states-management/actions/actions";
 
 const LoginSignup = () => {
-  const navigate = useNavigate();
   const [loginState, setLoginState] = useState("Log in");
 
-  const { open, handleClose } = useContext(ShopContext);
+  const { LoginAction, SignupAction } = useAuth();
 
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
+  const open = useSelector((state) => state.open);
+  const formData = useSelector((state) => state.formData);
+  const dispatch = useDispatch();
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const LoginAction = async () => {
-    let responseData;
-
-    const updatedFormData = {
-      email: formData.email,
-      password: formData.password,
-    };
-
-    if (!updatedFormData.email) {
-      toast.error("Email Required!");
-    } else if (!updatedFormData.password) {
-      toast.error("Password Required!");
-    } else {
-      await fetch("http://localhost:4000/login", {
-        method: "POST",
-        headers: {
-          Accept: "application/form-data",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedFormData),
+    dispatch(
+      setFormData({
+        ...formData,
+        [name]: value,
       })
-        .then((response) => response.json())
-        .then((data) => (responseData = data));
-
-      if (responseData.success) {
-        localStorage.setItem("auth-token", responseData.token);
-
-        toast.success("Welcome");
-        handleClose();
-        navigate("/");
-      } else {
-        toast.error(responseData.errors);
-      }
-    }
-  };
-  const SignupAction = async () => {
-    let responseData;
-    if (!formData.username) {
-      toast.error("Username Required!");
-    } else if (!formData.email) {
-      toast.error("Email Required!");
-    } else if (!formData.password) {
-      toast.error("Password Required");
-    } else {
-      await fetch("http://localhost:4000/signup", {
-        method: "POST",
-        headers: {
-          Accept: "application/form-data",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      })
-        .then((response) => response.json())
-        .then((data) => (responseData = data));
-
-      if (responseData.success) {
-        localStorage.setItem("auth-token", responseData.token);
-        navigate("/");
-        toast.success("Succesfully signed up");
-        handleClose();
-      } else {
-        toast.error(responseData.errors);
-      }
-    }
+    );
   };
 
   return (
     <Modal
       open={open}
-      onClose={handleClose}
+      onClose={() => dispatch(openLoginModal(false))}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >

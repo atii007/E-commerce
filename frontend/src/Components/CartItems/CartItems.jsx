@@ -1,20 +1,53 @@
-import React, { useContext } from "react";
 import styles from "./CartItems.module.css";
-
 import remove_icon from "../Assets/cart_cross_icon.png";
 import CartItemFormat from "./CartItemFormat";
-import { ShopContext } from "../../Context/Context";
 import { Box } from "@mui/material";
+import { connect } from "react-redux";
+import { getCartItems } from "../../states-management/actions/actions";
+import { useCookies } from "react-cookie";
 
-const CartItems = () => {
-  const { all_Product, cartItem, removeFromCart, getTotalCartAmount } =
-    useContext(ShopContext);
+export const CartItems = (props) => {
+  const { allProducts, cartItem, getCartItems } = props;
+
+  const [cookies] = useCookies(["token"]);
+
+  const getTotalCartAmount = () => {
+    let totalAmount = 0;
+    for (const item in props.cartItem) {
+      if (props.cartItem[item] > 0) {
+        let itemInfo = allProducts.find(
+          (product) => product.id === Number(item)
+        );
+        totalAmount += itemInfo.new_price * cartItem[item];
+      }
+    }
+    return totalAmount;
+  };
+
+  const removeFromCart = (itemId) => {
+    const newItem = { ...cartItem, [itemId]: (cartItem[itemId] || 0) - 1 };
+    getCartItems(newItem);
+    if (cookies.token) {
+      fetch("http://localhost:4000/removefromcart", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "auth-token": `${cookies.token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ itemId: itemId }),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.error("Error:", error));
+    }
+  };
 
   return (
     <Box className={styles.cartitems}>
       <CartItemFormat />
       <hr />
-      {all_Product.map((e) => {
+      {allProducts.map((e) => {
         if (cartItem[e.id] > 0) {
           return (
             <Box key={e.id}>
@@ -81,4 +114,11 @@ const CartItems = () => {
   );
 };
 
-export default CartItems;
+function cartItemProps(state) {
+  return {
+    allProducts: state.allProducts,
+    cartItem: state.cartItem,
+  };
+}
+
+export default connect(cartItemProps, { getCartItems })(CartItems);

@@ -1,16 +1,29 @@
-import React, { useContext } from "react";
 import styles from "./Navbar.module.css";
 import cart_icon from "../Assets/cart_icon.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import NavLinks from "./NavLinks";
-import { ShopContext } from "../../Context/Context";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import CustomButton from "../sharedComponent/CustomButton";
 import LoginSignup from "../../Pages/LoginSignup";
+import { useAuth } from "../../context/authProvider";
+import { connect } from "react-redux";
+import { openLoginModal } from "../../states-management/actions/actions";
+import { useCookies } from "react-cookie";
 
-const Navbar = () => {
-  const { getTotalCartItems, handleOpen, open } = useContext(ShopContext);
-  const navigate = useNavigate();
+export const Navbar = ({ open, cartItem, openLoginModal }) => {
+  const { handleLogout } = useAuth();
+
+  const [cookies] = useCookies(["token"]);
+
+  const getTotalCartItems = () => {
+    let totalItem = 0;
+    for (const item in cartItem) {
+      if (cartItem[item] > 0) {
+        totalItem += cartItem[item];
+      }
+    }
+    return totalItem;
+  };
 
   return (
     <header className="header_section">
@@ -38,7 +51,7 @@ const Navbar = () => {
               SHOPPER
             </Typography>
           </Link>
-          <Button
+          <button
             className="navbar-toggler"
             type="button"
             data-toggle="collapse"
@@ -47,8 +60,8 @@ const Navbar = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className> </span>
-          </Button>
+            <span> </span>
+          </button>
           <Box className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav">
               <NavLinks />
@@ -59,24 +72,21 @@ const Navbar = () => {
                 <Box className={styles.navCartCount}>{getTotalCartItems()}</Box>
               </li>
               <li className="nav-item">
-                {localStorage.getItem("auth-token") ? (
+                {cookies.token ? (
                   <CustomButton
                     title="Log Out"
                     marginTop="0px"
                     width="90px"
                     height="30px"
                     borderRadius="4px"
-                    onClick={() => {
-                      localStorage.removeItem("auth-token");
-                      navigate("/");
-                    }}
+                    onClick={handleLogout}
                   />
                 ) : (
                   <Link
                     className="nav-link"
                     to=""
                     style={{ textDecorationLine: "none", color: "white" }}
-                    onClick={handleOpen}
+                    onClick={() => openLoginModal(true)}
                   >
                     <CustomButton
                       title="Log In"
@@ -97,4 +107,11 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+function mapStateToProps(state) {
+  return {
+    open: state.open,
+    cartItem: state.cartItem,
+  };
+}
+
+export default connect(mapStateToProps, { openLoginModal })(Navbar);

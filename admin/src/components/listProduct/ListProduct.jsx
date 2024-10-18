@@ -32,7 +32,7 @@ const ListProduct = () => {
 
   return (
     <Box className={styles.listProduct}>
-      <Box class={`${styles.heading_container} ${styles.heading_center}`}>
+      <Box className={`${styles.heading_container} ${styles.heading_center}`}>
         <h2>
           All <span>Products</span>
         </h2>

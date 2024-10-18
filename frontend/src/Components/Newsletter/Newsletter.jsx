@@ -17,7 +17,7 @@ const Newsletter = () => {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor
                 </p>
-                <form action>
+                <form action="">
                   <input type="email" placeholder="Enter your email" />
                   <CustomButton
                     title="SUBSCRIBE"

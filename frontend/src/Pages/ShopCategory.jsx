@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./CSS/ShopCategory.css";
 import Item from "../Components/Item/Item";
 import { Box, Typography } from "@mui/material";
-import { ShopContext } from "../Context/Context";
 import CustomButton from "../Components/sharedComponent/CustomButton";
+import { useSelector } from "react-redux";
 
 const ShopCategory = (props) => {
-  const { all_Product } = useContext(ShopContext);
+  const all_Product = useSelector((state) => state.allProducts);
 
   const categoryProducts = all_Product.filter(
     (product) => product.category === props.category
@@ -15,7 +15,7 @@ const ShopCategory = (props) => {
   return (
     <Box className="shop-category">
       {props.banner}
-      <Box class="heading_container heading_center">
+      <Box className="heading_container heading_center">
         <h2 style={{ marginTop: "35px", textTransform: "uppercase" }}>
           {props.category}'s <span>Choice</span>
         </h2>

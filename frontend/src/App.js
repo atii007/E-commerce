@@ -11,8 +11,15 @@ import men_hero from "./Components/Assets/men_hero.png";
 import women_hero from "./Components/Assets/women_hero.png";
 import Profile from "./Pages/Profile";
 import HeroCategories from "./Components/CategoriesHeroSection/HeroCategories";
+import Dashboard from "./Pages/dashboard/Dashboard";
+import { useCookies } from "react-cookie";
 
 function App() {
+  const [cookies] = useCookies(["token"]);
+
+  const isAdmin =
+    cookies.token && cookies.user && cookies.user.role === "admin";
+
   return (
     <div>
       <BrowserRouter>
@@ -35,6 +42,7 @@ function App() {
               />
             }
           />
+
           <Route
             path="/women"
             element={
@@ -71,6 +79,13 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<LoginSignup />} />
           <Route path="/profile" element={<Profile />} />
+          {isAdmin && (
+            <>
+              <Route path="/dashboard" element={<Dashboard />} />
+              {/* <Route path="/addProduct" element={<AddProduct />} />
+              <Route path="/listProduct" element={<ListProduct />} /> */}
+            </>
+          )}
         </Routes>
         <Footer />
       </BrowserRouter>

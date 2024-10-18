@@ -11,7 +11,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <App />
-      <ToastContainer pauseOnFocusLoss autoClose={3000} />
+      <ToastContainer pauseOnFocusLoss={false} autoClose={3000} />
     </BrowserRouter>
   </React.StrictMode>
 );

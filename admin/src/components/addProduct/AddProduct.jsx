@@ -26,7 +26,6 @@ const AddProduct = () => {
   };
 
   const addProduct = async () => {
-    console.log(productDetails);
     let responseData;
     let product = productDetails;
 
@@ -47,7 +46,6 @@ const AddProduct = () => {
 
     if (responseData.success) {
       product.image = responseData.image_url;
-      console.log("Product", product);
       await fetch("http://localhost:4000/addproduct", {
         method: "POST",
         headers: {
@@ -67,7 +65,7 @@ const AddProduct = () => {
 
   return (
     <Box className={styles.addProduct}>
-      <Box class={`${styles.heading_container} ${styles.heading_center}`}>
+      <Box className={`${styles.heading_container} ${styles.heading_center}`}>
         <h2>
           Add <span>Products</span>
         </h2>
