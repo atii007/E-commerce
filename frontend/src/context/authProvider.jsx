@@ -13,8 +13,7 @@ export const AuthContext = createContext(null);
 
 export default function AuthProvider({ children }) {
   const dispatch = useDispatch();
-  const store = useSelector((state) => state.formData);
-  const { formData } = store;
+  const formData = useSelector((state) => state.formData);
   const [cookies, setCookies, removeCookie] = useCookies(["token"]);
 
   useEffect(() => {

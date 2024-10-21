@@ -9,11 +9,19 @@ import {
   RESET_CART,
 } from "../actions/actionTypes";
 
+const getDefaultCart = () => {
+  let Cart = {};
+  for (let index = 0; index < 50 + 1; index++) {
+    Cart[index] = 0;
+  }
+  return Cart;
+};
+
 const initialState = {
   authToken: null,
   currentUser: null,
   allProducts: [],
-  cartItem: {},
+  cartItem: getDefaultCart(),
   formData: { username: "", email: "", password: "" },
   open: false,
 };
