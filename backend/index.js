@@ -10,7 +10,7 @@ const cors = require("cors");
 
 require("dotenv").config();
 
-const url = process.env.MONGODB_URI;
+const url = process.env.MONGODB_URI || "";
 const Port = process.env.PORT;
 
 app.use(cors());

@@ -6,5 +6,4 @@
 /backend/.env
 
 # other file
-/docker-compose.yml
 /package-lock.json
