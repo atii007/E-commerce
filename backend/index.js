@@ -41,7 +41,6 @@ const Users = mongoose.model("Users", {
   date: { type: Date, default: Date.now },
 });
 
-// Storage setup for multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, "./upload/images"),
   filename: (req, file, cb) =>
@@ -57,7 +56,6 @@ app.use("/images", express.static("upload/images"));
 
 app.get("/", (req, res) => res.send("Express app running"));
 
-// Middleware to verify JWT
 const fetchUser = async (req, res, next) => {
   const token = req.header("auth-token");
   if (!token) return res.status(401).json({ errors: "Please Authenticate" });
@@ -71,7 +69,6 @@ const fetchUser = async (req, res, next) => {
   }
 };
 
-// User signup route
 app.post("/signup", async (req, res) => {
   const { username, email, password, role } = req.body;
   const existingUser = await Users.findOne({ email });
@@ -110,7 +107,6 @@ app.post("/signup", async (req, res) => {
   });
 });
 
-// User login route
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const user = await Users.findOne({ email });
@@ -140,7 +136,6 @@ app.post("/login", async (req, res) => {
   });
 });
 
-// Refresh token route
 app.post("/refresh-token", fetchUser, (req, res) => {
   const { refreshToken } = req.body;
   if (!refreshToken)
@@ -156,7 +151,6 @@ app.post("/refresh-token", fetchUser, (req, res) => {
   });
 });
 
-// Product routes
 app.post("/addproduct", async (req, res) => {
   const { name, category, new_price, old_price, image } = req.body;
   const products = await Product.find({});
@@ -185,19 +179,16 @@ app.get("/allproducts", async (req, res) => {
   res.json(products);
 });
 
-// New collections
 app.get("/newcollections", async (req, res) => {
   const products = await Product.find({}).limit(6).skip(1);
   res.json(products);
 });
 
-// Popular in women category
 app.get("/popularinwomen", async (req, res) => {
   const products = await Product.find({ category: "women" }).limit(3);
   res.json(products);
 });
 
-// Cart routes
 app.post("/addtocart", fetchUser, async (req, res) => {
   const user = await Users.findById(req.user.id);
   user.cartData[req.body.itemId] = (user.cartData[req.body.itemId] || 0) + 1;
