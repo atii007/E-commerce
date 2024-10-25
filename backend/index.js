@@ -1,21 +1,25 @@
 require("newrelic");
-require("dotenv").config();
-const Port = 4000;
+
 const express = require("express");
 const app = express();
-
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
 
+require("dotenv").config();
+
+const url = process.env.MONGODB_URI;
+const Port = process.env.PORT;
+
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect(
-  "mongodb+srv://razzaq6atif:zznxEMZpHoPouG7x@cluster0.bsuuyid.mongodb.net/e-commerce"
-);
+mongoose
+  .connect(url)
+  .then(() => console.log("connected"))
+  .catch((error) => console.log(error));
 
 app.get("/", (req, res) => {
   res.send("Express app running");

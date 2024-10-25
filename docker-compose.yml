@@ -21,6 +21,11 @@ services:
       - fullstack-network
     environment:
       - NODE_ENV=production
+      - PORT=4000
+      - JWT_SECRET=secret_ecom9854357ha12sfe
+      - MONGODB_URI=mongodb+srv://razzaq6atif:zznxEMZpHoPouG7x@cluster0.bsuuyid.mongodb.net/e-commerce
+      - NEW_RELIC_APP_NAME=ecommerce-api
+      - NEW_RELIC_LICENSE_KEY=56cc0f746953841c42ea3c57ca5cffe2FFFFNRAL
 
 networks:
   fullstack-network:
