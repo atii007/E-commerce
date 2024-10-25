@@ -6,7 +6,6 @@ import {
   getAllProducts,
   getCartItems,
   openLoginModal,
-  resetCart,
 } from "../states-management/actions/actions";
 
 export const AuthContext = createContext(null);
@@ -15,6 +14,10 @@ export default function AuthProvider({ children }) {
   const dispatch = useDispatch();
   const formData = useSelector((state) => state.formData);
   const [cookies, setCookies, removeCookie] = useCookies(["token"]);
+
+  const token = cookies.token;
+
+  console.log("token", token);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,12 +29,12 @@ export default function AuthProvider({ children }) {
 
         dispatch(getAllProducts(productData));
 
-        if (cookies.token) {
+        if (token) {
           const cartResponse = await fetch("http://localhost:4000/getcart", {
             method: "POST",
             headers: {
               Accept: "application/json",
-              "auth-token": cookies.token,
+              "auth-token": token,
               "Content-Type": "application/json",
             },
             body: JSON.stringify({}),
@@ -45,7 +48,7 @@ export default function AuthProvider({ children }) {
     };
 
     fetchData();
-  }, [cookies.token]);
+  }, [token]);
 
   const LoginAction = async () => {
     let responseData;
@@ -118,7 +121,7 @@ export default function AuthProvider({ children }) {
   };
 
   async function handleLogout() {
-    dispatch(resetCart({}));
+    dispatch(getCartItems({}));
     removeCookie(["user"], { path: "/" });
     removeCookie(["token"], { path: "/" });
   }
